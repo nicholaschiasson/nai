@@ -5,4 +5,4 @@ cp -rf src bin
 python -m compileall bin
 python -OO -m compileall bin
 find bin -name *.py | while read f; do rm $f; done
-tar cvzf bin/nai.tgz -C bin nai
+tar czf bin/nai.tgz -C bin nai
