@@ -68,3 +68,23 @@ def astar(state, heuristics):
                         heappush(fringe, (costs_dict[s] + heuristic_avg, s))
         iterations += 1
     return iterations, None
+
+#def alphabeta(state, depth, a, b, maximizing_player):
+#    if depth == 0 or state
+#
+#    if depth == 0 or node is a terminal node
+#        return the score of the node
+#    if maximizingPlayer
+#        v := -∞
+#        for each child of node
+#            v := max(v, alphabeta(child, depth – 1, α, β, FALSE))
+#            α := max(α, v)
+#            if β ≤ α then break /* β cut-off */
+#        return v
+#    else
+#        v := ∞
+#        for each child of node
+#            v := min(v, alphabeta(child, depth – 1, α, β, TRUE))
+#            β := min(β, v)
+#            if β ≤ α then break /* α cut-off */
+#        return v

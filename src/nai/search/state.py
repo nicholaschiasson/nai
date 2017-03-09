@@ -1,6 +1,6 @@
 import abc
 
-class AISearchProblem:
+class AISearchState:
     __metaclass__ = abc.ABCMeta
     @abc.abstractmethod
     def __eq__(self, other):
