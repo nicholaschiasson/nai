@@ -69,8 +69,8 @@ def astar(state, heuristics):
         iterations += 1
     return iterations, None
 
-#def alphabeta(state, depth, a, b, maximizing_player):
-#    if depth == 0 or state
+def alphabeta(state, depth, a, b, maximizing_player):
+    pass
 #
 #    if depth == 0 or node is a terminal node
 #        return the score of the node
