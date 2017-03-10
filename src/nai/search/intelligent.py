@@ -98,7 +98,7 @@ def minvalue(state, heuristics, a, b, depth):
             return b
     return b
 
-def alphabeta2(state, heuristics, depth=float("inf"), a=float("-inf"), b=float("inf"), maximizingPlayer=True):
+def alphabeta2(state, heuristics, depth=float("inf"), a=float("-inf"), b=float("inf"), maximizingPlayer=False):
     adjacent_states = state.get_adjacent_states()
     if depth == 0 or len(adjacent_states) < 1:
         heuristic_avg = 0.0
