@@ -97,27 +97,3 @@ def minvalue(state, heuristics, a, b, depth):
         if b <= a:
             return b
     return b
-
-def alphabeta2(state, heuristics, depth=float("inf"), a=float("-inf"), b=float("inf"), maximizingPlayer=False):
-    adjacent_states = state.get_adjacent_states()
-    if depth == 0 or len(adjacent_states) < 1:
-        heuristic_avg = 0.0
-        for f in heuristics:
-            heuristic_avg += f(state)
-        return heuristic_avg
-    if maximizingPlayer:
-        v = float("-inf")
-        for s in adjacent_states:
-            v = max(v, alphabeta2(s, heuristics, depth - 1, a, b, False))
-            a = max(a, v)
-            if b <= a:
-                break
-        return v
-    else:
-        v = float("inf")
-        for s in adjacent_states:
-            v = min(v, alphabeta2(s, heuristics, depth - 1, a, b, True))
-            a = min(b, v)
-            if b <= a:
-                break
-        return v
