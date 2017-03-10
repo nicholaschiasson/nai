@@ -69,22 +69,37 @@ def astar(state, heuristics):
         iterations += 1
     return iterations, None
 
-def alphabeta(state, depth, a, b, maximizing_player):
-    pass
-#
-#    if depth == 0 or node is a terminal node
-#        return the score of the node
-#    if maximizingPlayer
-#        v := -∞
-#        for each child of node
-#            v := max(v, alphabeta(child, depth – 1, α, β, FALSE))
-#            α := max(α, v)
-#            if β ≤ α then break /* β cut-off */
-#        return v
-#    else
-#        v := ∞
-#        for each child of node
-#            v := min(v, alphabeta(child, depth – 1, α, β, TRUE))
-#            β := min(β, v)
-#            if β ≤ α then break /* α cut-off */
-#        return v
+def alphabeta(state, heuristics, depth=float("inf")):
+    minmaxval = maxvalue(state, heuristics, float("-inf"), float("inf"))
+    for s in state.get_adjacent_states():
+        heuristic_avg = 0.0
+        for f in heuristics:
+            heuristic_avg += f(state)
+        if heuristic_avg == minmaxval:
+            return s
+
+def maxvalue(state, heuristics, a, b, depth):
+    adjacent_states = state.get_adjacent_states()
+    if depth < 1 or len(adjacent_states) < 1:
+        heuristic_avg = 0.0
+        for f in heuristics:
+            heuristic_avg += f(state)
+        return heuristic_avg
+    for s in adjacent_states:
+        a = max(a, minvalue(s, heuristics, a, b, depth - 1))
+        if a >= b:
+            return a
+    return a
+
+def minvalue(state, heuristics, a, b, depth):
+    adjacent_states = state.get_adjacent_states()
+    if depth < 1 or len(adjacent_states) < 1:
+        heuristic_avg = 0.0
+        for f in heuristics:
+            heuristic_avg += f(state)
+        return heuristic_avg
+    for s in adjacent_states:
+        b = min(b, maxvalue(s, heuristics, a, b, depth - 1))
+        if b <= a:
+            return b
+    return b
